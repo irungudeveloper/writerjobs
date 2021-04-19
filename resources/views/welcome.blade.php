@@ -1,100 +1,136 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
+  <title>Andikwa Kazi</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+<body>
 
-        <title>Laravel</title>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <a class="navbar-brand" href="#"> <img src="images/landing_page/andika_logo.png" style="width: 60px; height: 60px;" class="rounded-circle"> KAZI</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          
+            <ul class="navbar-nav ml-auto topnav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Testimonials</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                      <li class="nav-item">
+                        <a href="{{ url('/home') }}" class="btn btn-outline-primary rounded-pill">Home</a>
+                      </li>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-
+                      <li class="nav-item">
+                        <a href="{{ route('login') }}" class="btn mr-1 btn-outline-success rounded-pill">Login</a>
+                      </li>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                          <li class="nav-item">
+                            <a href="{{ route('register') }}" class="btn btn-outline-primary rounded-pill">Register</a>
+                          </li>
                         @endif
                     @endauth
-                </div>
+                
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+            </ul>
         </div>
-    </body>
+
+    </nav>
+
+    <div class="row m-0 p-0 hero-section">
+      <img src="images/landing_page/background_header.jpeg" style="width: 100%; height: 80vh; filter: brightness(50%);">
+    </div>
+
+    <div class="row mt-4 m-0 p-0">
+      <div class="col-12 text-center">
+        <h3 class="text-center"><u>Our Mission</u></h3>
+        <p>We work towards giving you the opportunity to choose what you work on where you work and total time flexibility all without hustling looking for work</p>
+        <p>We do the hustling for you at a fair price! Check our rates below!!</p>
+      </div>
+
+        <div class="col-12 mt-4 p-0 m-0">
+          <h3 class="text-center"><u>How It Works</u></h3>
+          <div class="row mt-2 m-0 p-0">
+            <div class="card col-3 border-0">
+              <div class="card-header text-center display-4">
+                  <i class="fa fa-search"></i>
+              </div>
+              <div class="card-body">
+                <p>Find The Job You Want To Work On</p>
+              </div>
+            </div>
+             <div class="card col-3 border-0">
+              <div class="card-header text-center display-4">
+                  <i class="fas fa-hand-holding-usd"></i>
+              </div>
+              <div class="card-body">
+                <p>Pay A Coommision To Get Further Details Of The Job </p>
+              </div>
+            </div>
+             <div class="card col-3 border-0">
+              <div class="card-header text-center display-4">
+                  <i class="fas fa-network-wired"></i>
+              </div>
+              <div class="card-body">
+                <p>Get The Job Assigned To You</p>
+              </div>
+            </div>
+             <div class="card col-3 border-0">
+              <div class="card-header text-center display-4">
+                  <i class="far fa-handshake"></i>
+              </div>
+              <div class="card-body">
+                <p>Full Payment Upon Completion</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+    <div class="row m-0 p-0 mt-5">
+      <div class="col-12">
+        <h3 class="text-center"><u>Testimonials</u></h3>
+      </div>
+      
+    </div>
+
+    <div class="row m-0 p-0 mt-5"> 
+       <div class="col-12">
+         <h3 class="text-center"><u>Blog Posts</u></h3>
+      </div>
+     
+    </div>
+
+    <footer class="row m-0 p-0 bg-dark text-white pt-2">
+      <div class="col-12 text-center">
+        <h3 class="text-center"><u>Contact Us</u></h3>
+          <p>TEL: +254711223344</p>
+          <p>EMAIL: johndoe@email.com</p>
+      </div>
+    </footer>
+
+</body>
+  
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </html>
+
+
+<!------ Include the above in your HEAD tag ---------->
+
+  

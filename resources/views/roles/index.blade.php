@@ -7,9 +7,9 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <table id="roles_table" class="table table-stripped table-responsive-md table-responsive-sm">
+    <div class="row justify-content-center">
+        <div class="col-11 bg-white p-3">
+            <table id="myTable" class="table table-stripped table-responsive-md table-responsive-sm">
                 <thead>
                     <th>#</th>
                     <th>Name</th>
@@ -32,7 +32,7 @@
                                         <form action=" {{ route('roles.destroy',$data->id ) }} " method="post">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-outline-danger rounded-pill ml-5"/>
+                                            <button type="submit" class="btn btn-outline-danger rounded-pill ml-2"/>
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>
@@ -50,7 +50,7 @@
 @stop
 
 @section('js')
-    <script type="text/javascript">
-        $('#roles_table').Datatable();
+     <script type="text/javascript">
+        $('#myTable').DataTable();
     </script>
 @endsection
