@@ -40,9 +40,66 @@ class WriterJobsController extends Controller
     public function store(Request $request)
     {
         //
-        $valid = $request->validate(['file'=>'required|image|mimes:jpeg,png,jpg,gif,svg',]);
 
-        return json_encode($valid);
+        $job = new WriterJobs;
+
+        if ($request->image !=null) 
+        {
+            $validator = $request->validate(
+                        [
+                            'image'=>'image|mimes:jpeg,png,jpg|max:2048',
+                            'title'=>'required',
+                            'description'=>'required',
+                         ]);
+
+            if ($validator) 
+            {
+                $image_name = time().'.'.$request->image->extension();
+
+                $job->title = $request->title;
+                $job->description = $request->description;
+                $job->image = $image_name;
+
+                $request->image->move(public_path('images/jobs'), $image_name);
+
+                if ($job->save()) 
+                {
+                    return redirect()->route('jobs.create');
+                }
+                else
+                {
+                    echo "ERROR UPLOADING";
+                }
+
+            }
+        }
+        else
+        {
+            $image_name = "placeholder_image.png";
+
+            $validator = $request->validate(
+                        [
+                            'title'=>'required',
+                            'description'=>'required',
+                         ]);
+
+            if ($validator) 
+            {
+                $job->title = $request->title;
+                $job->description = $request->description;
+                $job->image = $image_name;
+
+                if ($job->save()) 
+                {
+                    return redirect()->route('jobs.create');
+                }
+                else
+                {
+                    echo "ERROR UPLOADING";
+                }
+
+        }
+     }  
     }
 
     /**
@@ -65,6 +122,9 @@ class WriterJobsController extends Controller
     public function edit($id)
     {
         //
+        $jobs = WriterJobs::findOrFail($id);
+
+        return view('jobs.edit')->with('jobs',$jobs);
     }
 
     /**
@@ -76,7 +136,36 @@ class WriterJobsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        // echo "REACHED";
         //
+        if ($request->image == null) 
+        {
+            $image_name = "placeholder_image.png";
+        }
+        else
+        {
+            $image_name = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/jobs'), $image_name);
+
+        }
+
+            $jobs = WriterJobs::where('id',$request->id)
+                                    ->first()
+                                    ->update([
+                                                'image'=>$image_name,   
+                                                'title'=>$request->title,
+                                                'description'=>$request->description,
+                                                ]);
+
+            if ($jobs) 
+            {
+                return redirect()->route('jobs.index');
+            }
+            else
+            {
+                echo "ERROR UPDATING";
+            }
     }
 
     /**
@@ -88,5 +177,16 @@ class WriterJobsController extends Controller
     public function destroy($id)
     {
         //
+        $jobs = WriterJobs::findOrFail($id);
+
+        if ($jobs->delete()) 
+        {
+            return redirect()->route('jobs.index');
+        }
+        else
+        {
+            echo "ERROR IN DELETION";
+        }
+
     }
 }

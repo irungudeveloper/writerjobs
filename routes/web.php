@@ -24,6 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/roles','RolesController');
 
 Route::resource('/jobs','WriterJobsController');
+Route::post('/jobs/update/{id}','WriterJobsController@update')->name('jobs.update');
 
 Route::resource('/admin','AdminController');
 
