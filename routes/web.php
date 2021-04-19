@@ -21,6 +21,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('/roles','RolesController');
+
+Route::resource('/jobs','WriterJobsController');
+
+Route::resource('/admin','AdminController');
+
 Auth::routes();
 
 Route::get('/home', function() {

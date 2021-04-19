@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\WriterJobs;
 
-class WriterJobsController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,6 @@ class WriterJobsController extends Controller
     public function index()
     {
         //
-        $jobs = WriterJobs::all();
-
-        return view('jobs.index')->with('jobs',$jobs);
     }
 
     /**
@@ -28,7 +24,6 @@ class WriterJobsController extends Controller
     public function create()
     {
         //
-        return view('jobs.create');
     }
 
     /**
@@ -40,9 +35,6 @@ class WriterJobsController extends Controller
     public function store(Request $request)
     {
         //
-        $valid = $request->validate(['file'=>'required|image|mimes:jpeg,png,jpg,gif,svg',]);
-
-        return json_encode($valid);
     }
 
     /**

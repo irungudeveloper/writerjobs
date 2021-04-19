@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Roles;
 
 class RolesController extends Controller
 {
@@ -14,6 +15,8 @@ class RolesController extends Controller
     public function index()
     {
         //
+        $roles = Roles::all();
+        return view('roles.index')->with('roles',$roles);
     }
 
     /**
@@ -24,6 +27,9 @@ class RolesController extends Controller
     public function create()
     {
         //
+
+        return view('roles.create');
+
     }
 
     /**
@@ -35,6 +41,39 @@ class RolesController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = $request->validate(['name'=>'required']);
+
+        if ($validator) 
+        {
+            $role = new Roles;
+
+            $role->name = $request->name;
+
+            if ($role->save()) 
+            {
+                return json_encode(array(
+                    [
+                        'response_code'=>201,
+                        'response_message'=>'Role Created',
+                    ]));
+            }
+            else
+            {
+                return json_encode(array(
+                    [
+                       'response_code'=>500,
+                        'response_message'=>'Role Not Created', 
+                     ]));
+            }
+        }
+        else
+        {
+            return json_encode(array(
+                [
+                    'response_code'=>300,
+                    'response_message'=>'Invalid Input! Please Try Again',      
+                ]));
+        }
     }
 
     /**
@@ -57,6 +96,10 @@ class RolesController extends Controller
     public function edit($id)
     {
         //
+
+        $roles = Roles::findOrFail($id);
+
+        return view('roles.edit')->with('roles',$roles);
     }
 
     /**
@@ -69,6 +112,39 @@ class RolesController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $validator = $request->validate(['name'=>'required',]);
+
+        if ($validator) 
+        {
+            $roles = Roles::where('id',$request->id)
+                            ->update(['name'=>$request->name]);
+            if ($roles) 
+            {
+                return json_encode(array(
+                    [
+                        'response_code'=>200,
+                        'response_message'=>'Roles Updated',
+                    ]));
+            }
+            else
+            {
+                return json_encode(array(
+                    [
+                        'response_code'=>500,
+                        'response_message'=>'Role Not Updated',
+                    ]));
+            }
+        }
+        else
+        {
+            return json_encode(array(
+                [
+                    'response_code'=>300,
+                    'response_message'=>'Invalid Input! Please Try Again',
+                ]));
+        }
+
     }
 
     /**
@@ -80,5 +156,12 @@ class RolesController extends Controller
     public function destroy($id)
     {
         //
+        $roles = Roles::findOrFail($id);
+
+       if ($roles->delete()) 
+        {
+            return redirect()->route('roles.index');
+        }
+
     }
 }
