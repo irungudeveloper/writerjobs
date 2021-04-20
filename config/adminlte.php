@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Andika',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Andika</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'Andika',
 
     /*
     |--------------------------------------------------------------------------
@@ -237,7 +237,7 @@ return [
         [
             'text'        => 'Dashboard',
             'url'         => 'home',
-            'icon'        => 'far fa-fw fa-file',
+           'icon' => 'fas fa-tachometer-alt',
         ],
 
         ['header' => 'USER ACCOUNT SETTINGS'],
@@ -257,10 +257,12 @@ return [
         [
             'text' => 'Create New Role',
             'url' => 'roles/create',
+            'icon'  =>  'fas fa-plus',
         ],
         [
             'text' => 'Manage Roles',
             'url' => 'roles',
+            'icon'  =>  'fas fa-table',
         ],
 
         ['header' => 'JOB SETTINGS'],
@@ -268,10 +270,24 @@ return [
         [
             'text' => 'Create New Posting',
             'url' => 'jobs/create',
+            'icon'  =>  'fas fa-plus',
         ],
         [
             'text' => 'Manage Jobs',
             'url' => 'jobs',
+            'icon'  =>  'fas fa-table',
+        ],
+
+        ['header' => 'STATUS SETTINGS'],
+        [
+            'text' => 'Create New Status',
+            'url' => 'status/create',
+            'icon'  =>  'fas fa-plus',
+        ],
+        [
+            'text' => 'Manage Status',
+            'url' => 'status',
+            'icon'  =>  'fas fa-table',
         ],
     ],
 

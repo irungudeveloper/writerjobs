@@ -50,6 +50,8 @@ class WriterJobsController extends Controller
                             'image'=>'image|mimes:jpeg,png,jpg|max:2048',
                             'title'=>'required',
                             'description'=>'required',
+                            'amount' => 'required',
+                            'deadline' => 'required',
                          ]);
 
             if ($validator) 
@@ -59,6 +61,9 @@ class WriterJobsController extends Controller
                 $job->title = $request->title;
                 $job->description = $request->description;
                 $job->image = $image_name;
+                $job->amount = $request->amount;
+                $job->deadline = $request->deadline;
+                 $job->status_id = 0;
 
                 $request->image->move(public_path('images/jobs'), $image_name);
 
@@ -88,6 +93,9 @@ class WriterJobsController extends Controller
                 $job->title = $request->title;
                 $job->description = $request->description;
                 $job->image = $image_name;
+                $job->amount = $request->amount;
+                $job->deadline = $request->deadline;
+                $job->status_id = 0;
 
                 if ($job->save()) 
                 {
@@ -156,6 +164,8 @@ class WriterJobsController extends Controller
                                                 'image'=>$image_name,   
                                                 'title'=>$request->title,
                                                 'description'=>$request->description,
+                                                'amount'=>$request->amount,
+                                                'deadline'=>$request->deadline,
                                                 ]);
 
             if ($jobs) 

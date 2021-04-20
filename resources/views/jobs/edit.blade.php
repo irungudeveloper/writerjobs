@@ -13,18 +13,33 @@
                 @csrf
 
                 <div class="form-group row">
-                    <label for="title" class="col-3">Title: </label>
-                    <input type="text" name="title" id="title" class="form-control col-9" value=" {{ $jobs->title }} ">
+                    <label for="title">Title: </label>
+                    <input type="text" name="title" id="title" class="form-control col-12" value=" {{ $jobs->title }} ">
                 </div>
                 
                 <div class="form-group row">
-                    <label for="image" class="col-3">Image: </label>
-                    <input type="file" name="image" id="image" class="form-control col-9" value=" {{ $jobs->image }} ">
+                    <label for="image">Image: </label>
+                    <input type="file" name="image" id="image" class="form-control col-12" value=" {{ $jobs->image }} ">
                 </div>
 
                 <div class="form-group row">
-                    <label for="description" class="col-3">Description: </label>
-                    <textarea class="form-control col-9" id="description" name="description">{{$jobs->description}}
+                    <div class="col-6 p-3">
+                         <div class="row">
+                             <label for="amount">Amount: </label>
+                             <input type="number" name="amount" id="amount" class="form-control col-12" value="{{ $jobs->amount }}">
+                         </div>
+                    </div>
+                     <div class="col-6 p-3">
+                         <div class="row">
+                             <label for="deadline" >Deadline: </label>
+                             <input type="date" name="deadline" id="deadline" class="form-control col-12" value="{{ $jobs->deadline }}" >
+                         </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="description">Description: </label>
+                    <textarea class="form-control col-12" id="description" name="description">{{$jobs->description}}
                     </textarea>
                 </div>
                 

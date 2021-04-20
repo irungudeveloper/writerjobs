@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::resource('/roles','RolesController');
 
@@ -28,8 +28,10 @@ Route::post('/jobs/update/{id}','WriterJobsController@update')->name('jobs.updat
 
 Route::resource('/admin','AdminController');
 
+Route::resource('/status','StatusController');
+
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+// Route::get('/home', function() {
+//     return view('home');
+// })->name('home')->middleware('auth');
