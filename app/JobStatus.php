@@ -15,4 +15,5 @@ class JobStatus extends Model
     {
     	return $this->hasMany(WriterJobs::class);
     }
+    
 }

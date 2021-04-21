@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','LandingController@index')->name('landing.index');
+
+Route::resource('/landing','LandingController');
 
 Auth::routes();
 
@@ -29,6 +29,8 @@ Route::post('/jobs/update/{id}','WriterJobsController@update')->name('jobs.updat
 Route::resource('/admin','AdminController');
 
 Route::resource('/status','StatusController');
+
+Route::resource('/subpackage','SubpackageController');
 
 Auth::routes();
 

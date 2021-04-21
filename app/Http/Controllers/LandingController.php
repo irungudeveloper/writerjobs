@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use App\Subpackage;
 use App\User;
 
-class AdminController extends Controller
+class LandingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +20,9 @@ class AdminController extends Controller
     public function index()
     {
         //
-        $subs = User::where('role_id',2)->get();
+        $package = Subpackage::all();
 
-        return view('admin.index')->with('subs',$subs);
+        return view('welcome')->with('package',$package);
     }
 
     /**
@@ -39,6 +44,26 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         //
+        $validate = $request->validate([
+                                'name'=>'required',
+                                'email'=>'required',
+                                'password'=>'required',
+                            ]);
+        if ($validate) 
+        {
+            User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'role_id' => 2,
+            ]);
+
+            return json_encode(array(['response_code'=>201]));
+        }
+        else
+        {
+            return json_encode(array(['response_code'=>500]));
+        }
     }
 
     /**
@@ -61,6 +86,8 @@ class AdminController extends Controller
     public function edit($id)
     {
         //
+        $package = Subpackage::findOrFail($id);
+        return view('landing.create')->with('package',$package);
     }
 
     /**

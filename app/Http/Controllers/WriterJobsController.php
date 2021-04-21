@@ -63,7 +63,7 @@ class WriterJobsController extends Controller
                 $job->image = $image_name;
                 $job->amount = $request->amount;
                 $job->deadline = $request->deadline;
-                 $job->status_id = 0;
+                 $job->status_id = 1;
 
                 $request->image->move(public_path('images/jobs'), $image_name);
 
@@ -95,7 +95,7 @@ class WriterJobsController extends Controller
                 $job->image = $image_name;
                 $job->amount = $request->amount;
                 $job->deadline = $request->deadline;
-                $job->status_id = 0;
+                $job->status_id = 1;
 
                 if ($job->save()) 
                 {

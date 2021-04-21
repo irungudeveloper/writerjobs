@@ -108,6 +108,24 @@
       
     </div>
 
+    <div class="row m-0 p-0 mt-5 justify-content-center text-white">
+      <div class="col-12">
+        <h3 class="text-center"><u>Packages</u></h3>
+      </div>
+      @foreach($package as $data)
+        <div class="card col-3 border-0 bg-secondary m-1"> 
+          <div class="card-body">
+            <h4 class="text-center"><u> {{ $data->title }}</u> </h4>
+            <p class="text-center"><b>Amount:</b> {{ $data->amount }} </p>
+            <p> {{ $data->description }} </p>
+          </div>
+          <div class="card-footer text-center">
+            <a href=" {{ route('landing.edit',$data->id) }} " class="btn btn-solid btn-info">Subscribe</a>
+          </div>
+        </div>
+      @endforeach
+    </div>
+
     <div class="row m-0 p-0 mt-5"> 
        <div class="col-12">
          <h3 class="text-center"><u>Blog Posts</u></h3>

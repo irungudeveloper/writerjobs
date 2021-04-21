@@ -240,54 +240,81 @@ return [
            'icon' => 'fas fa-tachometer-alt',
         ],
 
-        ['header' => 'USER ACCOUNT SETTINGS'],
-        [
-            'text' => 'Create User Account',
-            'url'  => 'admin/create',
-            'icon' => 'fas fa-fw fa-user',
+        ['header' => 'SUBSCRIBER ACCOUNT SETTINGS',
+            'can'    => 'administrator',
         ],
+        
         [
-            'text' => 'Manage User Accounts',
+            'text' => 'Manage Subscriber Accounts',
             'url'  => 'admin',
             'icon' => 'fas fa-fw fa-lock',
+            'can'    => 'administrator',
         ],
 
-        ['header' => 'USER ROLES SETTINGS'],
+        ['header' => 'USER ROLES SETTINGS',
+            'can'    => 'administrator',
+        ],
 
         [
             'text' => 'Create New Role',
             'url' => 'roles/create',
             'icon'  =>  'fas fa-plus',
+            'can'    => 'administrator',
         ],
         [
             'text' => 'Manage Roles',
             'url' => 'roles',
             'icon'  =>  'fas fa-table',
+            'can'    => 'administrator',
         ],
 
-        ['header' => 'JOB SETTINGS'],
+        ['header' => 'JOB SETTINGS',
+            'can'    => 'administrator',
+        ],
 
         [
             'text' => 'Create New Posting',
             'url' => 'jobs/create',
             'icon'  =>  'fas fa-plus',
+            'can'    => 'administrator',
         ],
         [
             'text' => 'Manage Jobs',
             'url' => 'jobs',
             'icon'  =>  'fas fa-table',
+            'can'    => 'administrator',
         ],
 
-        ['header' => 'STATUS SETTINGS'],
+        ['header' => 'STATUS SETTINGS',
+            'can'    => 'administrator',
+        ],
         [
             'text' => 'Create New Status',
             'url' => 'status/create',
             'icon'  =>  'fas fa-plus',
+            'can'    => 'administrator',
         ],
         [
             'text' => 'Manage Status',
             'url' => 'status',
             'icon'  =>  'fas fa-table',
+            'can'    => 'administrator',
+        ],
+
+         ['header' => 'SUB-PACKAGE SETTINGS',
+            'can'    => 'administrator',
+        ],
+        [
+            'text' => 'Create New Package',
+            'url' => 'subpackage/create',
+            'icon'  =>  'fas fa-plus',
+            'can'    => 'administrator',
+        ],
+        [
+            'text' => 'Manage Package',
+            'url' => 'subpackage',
+            'icon'  =>  'fas fa-table',
+            'can'    => 'administrator',
         ],
     ],
 

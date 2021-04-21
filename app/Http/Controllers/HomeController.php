@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+
 use App\WriterJobs;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -24,8 +27,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $jobs = WriterJobs::all();
+        
+        if (Gate::allows('administrator')) 
+        {
+            // echo "ADMINISTRATOR DASHBOARD";
+            $jobs = WriterJobs::count();
+            $user = User::where('role_id',2)->count();
 
-        return view('home')->with('jobs',$jobs);
+           return view('dashboard.admin_dashboard')->with('jobs',$jobs)
+                                                   ->with('subs',$user);  
+        }
+       
+        if (Gate::allows('subscriber')) 
+        {
+           echo "SUBSCRIBER DASHBOARD";
+        }
+
+        // $jobs = WriterJobs::where('status_id',1)->get();
+
+        // return view('home')->with('jobs',$jobs);
     }
 }
