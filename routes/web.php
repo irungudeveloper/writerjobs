@@ -32,6 +32,8 @@ Route::resource('/status','StatusController');
 
 Route::resource('/subpackage','SubpackageController');
 
+Route::resource('/application','ApplicationController');
+
 Auth::routes();
 
 // Route::get('/home', function() {

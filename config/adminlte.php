@@ -316,6 +316,36 @@ return [
             'icon'  =>  'fas fa-table',
             'can'    => 'administrator',
         ],
+        [
+            'header'=>'Application Settings',
+            'can'=>'subscriber',
+        ],
+        [
+            'text'=>'Manage Your Applications',
+            'url'=>'#',
+            'icon'=>'fas fa-table',
+            'can'=>'subscriber',
+        ],
+
+        [
+            'header'=>'Job Settings',
+            'can'=>'subscriber',
+        ],
+        [
+            'text'=>'Manage Your Jobs',
+            'url'=>'#',
+            'icon'=>'fas fa-table',
+            'can'=>'subscriber',
+        ],
+        [
+          'header'=>'Account Settings',  
+        ],
+        [
+            'text'=>'Manage Your Account',
+            'url'=>'#',
+            'icon'=>'fas fa-table',
+        ],
+    
     ],
 
        

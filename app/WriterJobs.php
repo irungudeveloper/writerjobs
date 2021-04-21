@@ -16,4 +16,9 @@ class WriterJobs extends Model
     	return $this->belongsTo(JobStatus::class);
     }
 
+    public function application()
+    {
+    	return $this->hasMany(Application::class);
+    }
+
 }

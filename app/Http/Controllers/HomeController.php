@@ -40,7 +40,9 @@ class HomeController extends Controller
        
         if (Gate::allows('subscriber')) 
         {
-           echo "SUBSCRIBER DASHBOARD";
+           $jobs = WriterJobs::where('status_id',1)->get();
+
+           return view('dashboard.sub_dashboard')->with('jobs',$jobs);
         }
 
         // $jobs = WriterJobs::where('status_id',1)->get();
