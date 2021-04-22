@@ -42,4 +42,14 @@ class User extends Authenticatable
         return $this->belongsTo(Roles::class);
     }
 
+    public function assign()
+    {
+        return $this->hasMany(Assign::class);
+    }
+
+    public function application()
+    {
+        return $this->hasMany(Application::class);
+    }
+
 }

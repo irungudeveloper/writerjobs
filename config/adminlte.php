@@ -285,20 +285,30 @@ return [
             'can'    => 'administrator',
         ],
 
-        ['header' => 'STATUS SETTINGS',
+        ['header'=>'JOB ASSIGNMENT SETTINGS',
+            'can'=>'administrator',
+        ],
+        [
+            'text'=>'Manage Job Applications',
+            'url'=>'assign',
+            'icon'  =>  'fas fa-table',
             'can'    => 'administrator',
+        ],
+
+        ['header' => 'STATUS SETTINGS',
+            'can'    => 'developer',
         ],
         [
             'text' => 'Create New Status',
             'url' => 'status/create',
             'icon'  =>  'fas fa-plus',
-            'can'    => 'administrator',
+            'can'    => 'developer',
         ],
         [
             'text' => 'Manage Status',
             'url' => 'status',
             'icon'  =>  'fas fa-table',
-            'can'    => 'administrator',
+            'can'    => 'developer',
         ],
 
          ['header' => 'SUB-PACKAGE SETTINGS',
@@ -322,7 +332,7 @@ return [
         ],
         [
             'text'=>'Manage Your Applications',
-            'url'=>'#',
+            'url'=>'application',
             'icon'=>'fas fa-table',
             'can'=>'subscriber',
         ],

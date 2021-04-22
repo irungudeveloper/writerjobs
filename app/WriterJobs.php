@@ -21,4 +21,9 @@ class WriterJobs extends Model
     	return $this->hasMany(Application::class);
     }
 
+    public function assign()
+    {
+        return $this->hasOne(Assign::class);
+    }
+
 }

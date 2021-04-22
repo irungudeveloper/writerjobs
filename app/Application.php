@@ -22,4 +22,9 @@ class Application extends Model
     	return $this->belongsTo(ApplicationStatus::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
