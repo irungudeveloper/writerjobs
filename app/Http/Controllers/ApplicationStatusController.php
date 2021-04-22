@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
-use App\Application;
+
 
 class ApplicationStatusController extends Controller
 {
@@ -17,10 +16,7 @@ class ApplicationStatusController extends Controller
     {
         //
 
-    $application = Application::where('user_id',Auth::user()->id)->get();
-
-    return view('application.index')->with('application',$application);
-
+   
     }
 
     /**
