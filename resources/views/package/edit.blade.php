@@ -75,7 +75,8 @@
                     success:function(response)
                     {
                         $('#loader').hide();
-                        console.table(response)
+                        console.table(response);
+                        swal("Done","The Record Has Been Updated","success");
 
                     },
                     error:function(msg)

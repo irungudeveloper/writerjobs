@@ -9,6 +9,9 @@
 @section('content')
     <div class="row justify-content-center ">
         <div class="col-10 m-3 p-3 bg-white">
+
+            <h3 class="text-center"><u>Create New Subscription Package</u></h3>
+
             <form>
                 @csrf
 
@@ -73,7 +76,8 @@
                     success:function(response)
                     {
                         $('#loader').hide();
-                        console.table(response)
+                        console.table(response);
+                        swal("Done","The record has been created","success");
 
                     },
                     error:function(msg)

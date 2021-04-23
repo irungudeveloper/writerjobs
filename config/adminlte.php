@@ -251,22 +251,6 @@ return [
             'can'    => 'administrator',
         ],
 
-        ['header' => 'USER ROLES SETTINGS',
-            'can'    => 'administrator',
-        ],
-
-        [
-            'text' => 'Create New Role',
-            'url' => 'roles/create',
-            'icon'  =>  'fas fa-plus',
-            'can'    => 'administrator',
-        ],
-        [
-            'text' => 'Manage Roles',
-            'url' => 'roles',
-            'icon'  =>  'fas fa-table',
-            'can'    => 'administrator',
-        ],
 
         ['header' => 'JOB SETTINGS',
             'can'    => 'administrator',
@@ -431,11 +415,11 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
             ],
