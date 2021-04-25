@@ -26,4 +26,9 @@ class WriterJobs extends Model
         return $this->hasOne(Assign::class);
     }
 
+    public function submission()
+    {
+        return $this->belongsTo(SubmissionStatus::class);
+    }
+
 }

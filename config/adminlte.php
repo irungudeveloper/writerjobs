@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Andika',
+    'title' => 'ANDIKA',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Andika</b>',
+    'logo' => '<b>ANDIKA</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -126,7 +126,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-success elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -323,6 +323,12 @@ return [
 
         [
             'header'=>'Job Settings',
+            'can'=>'subscriber',
+        ],
+        [
+            'text'=>'Upload Job',
+            'url'=>'submit/create',
+            'icon'=>'fas fa-plus',
             'can'=>'subscriber',
         ],
         [

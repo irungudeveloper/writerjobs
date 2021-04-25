@@ -32,7 +32,9 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <button class="btn btn-solid btn-info" id="confirm">Confirm Assignment</button>
+                    <button class="btn btn-solid btn-info" id="confirm">
+                        Confirm Assignment <img src="/images/loaders/black_hole_spinner.gif" width="20px" height="20px" id="loader" style="display: none;">
+                    </button>
                 <input type="hidden" name="app_id" id="app_id" value=" {{ $application->id }} ">
                 <input type="hidden" name="job_id" id="job_id" value=" {{ $application->job->id }} " >
                 <input type="hidden" name="user_id" id="user_id" value=" {{ $application->user->id }} " >
@@ -44,6 +46,7 @@
 @stop
 
 @section('js')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <script type="text/javascript">
        $(document).ready(function()
        {
@@ -51,6 +54,8 @@
             {
                 e.preventDefault();
                 console.log('Prevented');
+
+                $('#loader').show();
 
                 var app_id = $('#app_id').val();
                 var job_id = $('#job_id').val();
@@ -70,10 +75,14 @@
                     success:function(response)
                     {
                         console.table(response);
+                        $('#loader').hide();
+                        swal("Done","Your application has been submitted","success");
                     },
                     error:function(msg)
                     {
                         console.table(msg);
+                        $('#loader').hide();
+                        swal("Oops","Something went wrong! Retry assigning the job" ,"error");
                     }
                 });
 

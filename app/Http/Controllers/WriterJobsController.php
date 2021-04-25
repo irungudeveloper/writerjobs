@@ -67,13 +67,18 @@ class WriterJobsController extends Controller
 
                 $request->image->move(public_path('images/jobs'), $image_name);
 
+
                 if ($job->save()) 
                 {
+                    Session::flash('message','Upload Successfully.');
+                    Session::flash('alert-class', 'alert-success');
                     return redirect()->route('jobs.create');
                 }
                 else
                 {
-                    echo "ERROR UPLOADING";
+                     Session::flash('message','Upload Not Successful.');
+                     Session::flash('alert-class', 'alert-danger');
+                     return redirect()->route('jobs.create');
                 }
 
             }

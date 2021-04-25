@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-12 text-center">
                             <button class="btn btn-info rounded-pill" id="apply">
-                                Make Application
+                                Make Application <img src="/images/loaders/black_hole_spinner.gif" width="20px" height="20px" id="loader" style="display: none;">
                             </button>
                         </div>
                     </div>
@@ -43,12 +43,15 @@
 @stop
 
 @section('js')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         //$('#myTable').DataTable();
         $('#apply').on('click',function(e)
         {
             e.preventDefault();
             console.log('Prevented');
+
+             $('#loader').show();
 
             var user_id = $('#user_id').val();
             var job_id = $('#job_id').val();
@@ -65,10 +68,15 @@
                 success:function(response)
                 {
                     console.table(response);
+                    $('#loader').hide();
+                    swal("Done","Your application has been submitted","success");
                 },
                 error:function(msg)
                 {
                     console.table(msg);
+                    $('#loader').hide();
+                    swal ( "Oops" ,  "Something went wrong! Retry submitting the job application  " ,  "error" );
+
                 }
             });
 

@@ -36,6 +36,8 @@ Route::resource('/application','ApplicationController');
 
 Route::resource('/assign','AssignController');
 
+Route::resource('/submit','SubmissionController');
+
 Auth::routes();
 
 // Route::get('/home', function() {
