@@ -13,30 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','LandingController@index')->name('landing.index');
-
-Route::resource('/landing','LandingController');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-
-Route::resource('/roles','RolesController');
-
-Route::resource('/jobs','WriterJobsController');
-Route::post('/jobs/update/{id}','WriterJobsController@update')->name('jobs.update');
-
-Route::resource('/admin','AdminController');
-
-Route::resource('/status','StatusController');
-
-Route::resource('/subpackage','SubpackageController');
-
-Route::resource('/application','ApplicationController');
-
-Route::resource('/assign','AssignController');
-
-Route::resource('/submit','SubmissionController');
+Route::view('/','welcome');
 
 Auth::routes();
 

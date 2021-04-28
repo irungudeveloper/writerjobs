@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use App\Subpackage;
-use App\User;
+use App\Category;
 
-class LandingController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +15,10 @@ class LandingController extends Controller
     public function index()
     {
         //
-        $package = Subpackage::all();
+        $category = Category::all();
 
-        return view('welcome')->with('package',$package);
+        return view('category.index')->with('category',$category);
+
     }
 
     /**
@@ -33,6 +29,8 @@ class LandingController extends Controller
     public function create()
     {
         //
+
+        return view('category.create');
     }
 
     /**
@@ -44,25 +42,26 @@ class LandingController extends Controller
     public function store(Request $request)
     {
         //
-        $validate = $request->validate([
-                                'name'=>'required',
-                                'email'=>'required',
-                                'password'=>'required',
-                            ]);
+        $category = new Category;
+
+        $validate = $request->validate(['name']);
+
         if ($validate) 
         {
-            User::create([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                    'role_id' => 2,
-            ]);
+           $category->name = $request->name;
 
-            return json_encode(array(['response_code'=>201]));
+           if ($category->save()) 
+           {
+              return response()->json(['status_code'=>201]);
+           }
+           else
+           {
+                return response()->json(['status_code'=>500]);
+           }
         }
         else
         {
-            return json_encode(array(['response_code'=>500]));
+            return response()->json(['status_code'=>300]);
         }
     }
 
@@ -86,8 +85,9 @@ class LandingController extends Controller
     public function edit($id)
     {
         //
-        $package = Subpackage::findOrFail($id);
-        return view('landing.create')->with('package',$package);
+        $category = Category::findOrFail($id);
+
+        return view('category.edit')->with('category',$category);
     }
 
     /**
@@ -100,6 +100,25 @@ class LandingController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validate = $request->validate(['name'=>'required']);
+
+        if ($validate) 
+        {
+            $category = Category::where('id',$id)->first()->update(['name'=>$request->name]);
+            if ($category) 
+            {
+                return response()->json(['status_code'=>200]);
+            }
+            else
+            {
+                return response()->json(['status_code'=>500]);
+            }
+        }
+        else
+        {
+            return response()->jsoon(['status_code'=>300]);
+        }
+
     }
 
     /**
@@ -111,5 +130,15 @@ class LandingController extends Controller
     public function destroy($id)
     {
         //
+        $category = Category::findOrFail($id);
+
+        if ($category->delete()) 
+        {
+            return response()->json(['status_code'=>200]);
+        }
+        else
+        {
+            return response()->json(['status_code'=>500]);
+        }
     }
 }
