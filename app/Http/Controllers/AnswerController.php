@@ -67,7 +67,9 @@ class AnswerController extends Controller
 
             if ($answer->save()) 
             {
-                return response()->json(['status_code'=>201]);
+               $answer->category()->attach($request->category_id);
+               
+                   return response()->json(['status_code'=>201]);
             }
             else
             {
@@ -101,8 +103,10 @@ class AnswerController extends Controller
     {
         //
         $answer = Answer::findOrFail($id);
+        $category = Category::all();
 
-        return view('answer.edit')->with('answer',$answer);
+        return view('answer.edit')->with('answer',$answer)
+                                  ->with('category',$category);
     }
 
     /**

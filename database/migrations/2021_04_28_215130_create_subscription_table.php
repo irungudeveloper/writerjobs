@@ -17,7 +17,6 @@ class CreateSubscriptionTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('amount');
-            $table->integer('status_id');
             $table->timestamps();
         });
     }

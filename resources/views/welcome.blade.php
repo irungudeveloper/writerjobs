@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ANDIKA</title>
+  <title>JIBU</title>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href=" {{ asset('css/custom.css') }} ">
@@ -11,7 +11,7 @@
   <div class="preloader"></div>
     
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-        <a class="navbar-brand" href="#"> <img src="images/landing_page/andika_logo.png" style="width: 50px; height: 50px;" class="rounded-circle"> KAZI</a>
+        <a class="navbar-brand" href="#"> <img src="images/landing_page/andika_logo.png" style="width: 50px; height: 50px;" class="rounded-circle"> JIBU</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -55,99 +55,75 @@
       <img src="images/landing_page/background_header.jpeg" style="width: 100%; height: 80vh; filter: brightness(50%);">
     </div>
 
-    <div class="row mt-4 m-0 p-0">
-      <div class="col-12 text-center">
-        <h3 class="text-center"><u>Our Mission</u></h3>
-        <p>We work towards giving you the opportunity to choose what you work on where you work and total time flexibility all without hustling looking for work</p>
-        <p>We do the hustling for you at a fair price! Check our rates below!!</p>
+    <div class="row m-0 justify-content-center">
+      <div class="col-12 bg-white">
+          <h4 class="text-center mt-5"><u>Need Help! Search for the question and get results</u></h4>
+          <form>
+            <div class="form-group row justify-content-center">
+              <input type="text" name="search" class="col-9 p-2 mr-2 form-control border border-3 alert-secondary rounded-pill">
+              <button class="btn btn-solid btn-success col-2">Search <i class="fas fa-search"></i></button>
+            </div>
+          </form>
       </div>
-
-        <div class="col-12 mt-4 p-0 m-0">
-          <h3 class="text-center"><u>How It Works</u></h3>
-          <div class="row mt-2 m-0 p-0">
-            <div class="card col-3 border-0">
-              <div class="card-header text-center display-4 border-0 bg-white">
-                  <i class="fa fa-search" style="color: #0d42e1;"></i>
-              </div>
-              <div class="card-body">
-                <p>Find The Job You Want To Work On</p>
-              </div>
-            </div>
-             <div class="card col-3 border-0">
-              <div class="card-header text-center display-4 border-0 bg-white">
-                  <i class="fas fa-hand-holding-usd" style="color: #05db1b;"></i>
-              </div>
-              <div class="card-body">
-                <p>Pay A Coommision To Get Further Details Of The Job </p>
-              </div>
-            </div>
-             <div class="card col-3 border-0">
-              <div class="card-header text-center display-4 border-0 bg-white">
-                  <i class="fas fa-network-wired" style="color: #230284;"></i>
-              </div>
-              <div class="card-body">
-                <p>Get The Job Assigned To You</p>
-              </div>
-            </div>
-             <div class="card col-3 border-0">
-              <div class="card-header text-center display-4 border-0 bg-white">
-                  <i class="far fa-handshake" style="color: #0fd267;"></i>
-              </div>
-              <div class="card-body">
-                <p>Full Payment Upon Completion</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
     </div>
 
-    <div class="row m-0 p-0 mt-5">
-      <div class="col-12">
-        <h3 class="text-center"><u>Testimonials</u></h3>
-        <div class="row">
-          <div class="col-4 p-2">
-            <div class="card test">
-              <div class="card-body">
-                <p>This is a sample testimonial</p>
+    <div class="row m-0 mt-3">
+      <div class="col-12 p-2">
+        <h4 class="text-center mt-3"><u>All Categories</u></h4>
+        <div class="row m-0 ">
+          <div class="col-10">
+            @foreach($category as $data)
+            <a href="#" class="m-2 btn btn-outline-success rounded-pill"> {{ $data->name }} </a>
+             @endforeach
+          </div>       
+        </div>
+      </div>
+    </div>
+
+    <div class="row m-0 mt-5">
+      <div class="col-12 p-2">
+        <h4 class="text-center"><u>Latest Q&A</u></h4>
+
+        <div class="row m-0">
+          @foreach($answer as $data)
+
+            <div class="col-3 p-3">
+              <div class="card">
+                <div class="card-header">
+                  <img src="images/{{$data->image}}" style="width: 100%; height: 30vh;">
+                </div>
+                <div class="card-body">
+                  <p>Question: {{ $data->question }} </p>
+                  <p>One off price: {{ $data->price }} </p>
+                </div>
+                <div class="card-footer text-center">
+                  <button class="btn btn-solid btn-success">View Answer</button>
+                </div>
               </div>
             </div>
-          </div>
-           <div class="col-4 p-2">
-            <div class="card test">
-              <div class="card-body">
-                <p>This is a sample testimonial</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-4 p-2">
-            <div class="card test">
-              <div class="card-body">
-                <p>This is a sample testimonial</p>
-              </div>
-            </div>
-          </div>
+
+          @endforeach  
         </div>
 
       </div>
-      
     </div>
 
     <div class="row m-0 p-0 mt-5">
       <div class="col-12">
         <h3 class="text-center"><u>Packages</u></h3>
       </div>
-      @foreach($package as $data)
+     
+     @foreach($sub as $data)
       <div class="col-4 p-2 test">
         <div class="card border-0 m-1"> 
         
           <div class="card-body">
-            <h4 class="text-center"><u> {{ $data->title }}</u> </h4>
-            <p class="text-center"><b>Amount:</b> {{ $data->amount }} </p>
-            <p> {{ $data->description }} </p>
+            <h4 class="text-center"><u>{{ $data->name }}</u></h4>
+            <p class="text-center"><b>Amount: {{ $data->amount }} </b> </p>
+            <p></p>
           </div>
           <div class="card-footer text-center bg-white">
-            <a href=" {{ route('landing.edit',$data->id) }} " class="btn btn-solid btn-info">Subscribe</a>
+            <a href="#" class="btn btn-solid btn-info">Subscribe</a>
           </div>
         </div>
       </div>
@@ -218,13 +194,16 @@
   
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+  <script src='https://cdn.tiny.cloud/1/kxqq67o3mcu65boxzctvtlv4sjsjzenp4dyiu6iqrtlucr66/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+  </script>
+    
   <script type="text/javascript">
     
-    window.onload = function(){
+    window.onload = function()
+    {
       $('.preloader').fadeOut('slow');
     }
-    
+
   </script>
 
 </html>

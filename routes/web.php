@@ -13,7 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/','welcome');
+Route::get('/','DashboardController@landing');
+
+Route::resource('/answer','AnswerController');
+
+Route::resource('/sub','SubscriptionController');
+
+Route::resource('/category','CategoryController');
+
+Route::get('/home','HomeController@home');
 
 Auth::routes();
 

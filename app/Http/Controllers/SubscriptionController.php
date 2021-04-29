@@ -99,7 +99,7 @@ class SubscriptionController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $validate = $request->validate(['name'=>'required']);
+        $validate = $request->validate(['name'=>'required','amount'=>'required']);
 
         if ($validate) 
         {

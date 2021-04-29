@@ -240,112 +240,45 @@ return [
            'icon' => 'fas fa-tachometer-alt',
         ],
 
-        ['header' => 'SUBSCRIBER ACCOUNT SETTINGS',
-            'can'    => 'administrator',
-        ],
-        
+        ['header'=>'Category Settings'],
+
         [
-            'text' => 'Manage Subscriber Accounts',
-            'url'  => 'admin',
-            'icon' => 'fas fa-fw fa-lock',
-            'can'    => 'administrator',
-        ],
-
-
-        ['header' => 'JOB SETTINGS',
-            'can'    => 'administrator',
+            'text'=>'Create new Category',
+            'url'=>'category/create',
+             'icon' => 'fas fa-plus',
         ],
 
         [
-            'text' => 'Create New Posting',
-            'url' => 'jobs/create',
-            'icon'  =>  'fas fa-plus',
-            'can'    => 'administrator',
-        ],
-        [
-            'text' => 'Manage Jobs',
-            'url' => 'jobs',
-            'icon'  =>  'fas fa-table',
-            'can'    => 'administrator',
-        ],
-
-        ['header'=>'JOB ASSIGNMENT SETTINGS',
-            'can'=>'administrator',
-        ],
-        [
-            'text'=>'Manage Job Applications',
-            'url'=>'assign',
-            'icon'  =>  'fas fa-table',
-            'can'    => 'administrator',
-        ],
-
-        ['header' => 'STATUS SETTINGS',
-            'can'    => 'developer',
-        ],
-        [
-            'text' => 'Create New Status',
-            'url' => 'status/create',
-            'icon'  =>  'fas fa-plus',
-            'can'    => 'developer',
-        ],
-        [
-            'text' => 'Manage Status',
-            'url' => 'status',
-            'icon'  =>  'fas fa-table',
-            'can'    => 'developer',
-        ],
-
-         ['header' => 'SUB-PACKAGE SETTINGS',
-            'can'    => 'administrator',
-        ],
-        [
-            'text' => 'Create New Package',
-            'url' => 'subpackage/create',
-            'icon'  =>  'fas fa-plus',
-            'can'    => 'administrator',
-        ],
-        [
-            'text' => 'Manage Package',
-            'url' => 'subpackage',
-            'icon'  =>  'fas fa-table',
-            'can'    => 'administrator',
-        ],
-        [
-            'header'=>'Application Settings',
-            'can'=>'subscriber',
-        ],
-        [
-            'text'=>'Manage Your Applications',
-            'url'=>'application',
+            'text'=>'Manage Categories',
+            'url'=>'category',
             'icon'=>'fas fa-table',
-            'can'=>'subscriber',
         ],
 
+        ['header'=>'Answer Settings'],
         [
-            'header'=>'Job Settings',
-            'can'=>'subscriber',
-        ],
-        [
-            'text'=>'Upload Job',
-            'url'=>'submit/create',
+            'text'=>'Ceate new Answer',
+            'url'=>'answer/create',
             'icon'=>'fas fa-plus',
-            'can'=>'subscriber',
         ],
         [
-            'text'=>'Manage Your Jobs',
-            'url'=>'#',
-            'icon'=>'fas fa-table',
-            'can'=>'subscriber',
-        ],
-        [
-          'header'=>'Account Settings',  
-        ],
-        [
-            'text'=>'Manage Your Account',
-            'url'=>'#',
+            'text'=>'Manage Answers',
+            'url'=>'answer',
             'icon'=>'fas fa-table',
         ],
-    
+
+        ['header'=>'Subscrption Settings'],
+        [
+            'text'=>'Ceate new Answer',
+            'url'=>'sub/create',
+            'icon'=>'fas fa-plus',
+        ],
+        [
+            'text'=>'Manage Answers',
+            'url'=>'sub',
+            'icon'=>'fas fa-table',
+        ],
+
+
     ],
 
        
@@ -406,16 +339,16 @@ return [
             ],
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
                 ],
             ],

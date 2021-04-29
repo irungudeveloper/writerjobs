@@ -16,4 +16,9 @@ class Answer extends Model
     						'price',
     						'answer'
     					];
+
+   	public function category()
+   	{
+   		return $this->belongsToMany(Category::class);
+   	}
 }

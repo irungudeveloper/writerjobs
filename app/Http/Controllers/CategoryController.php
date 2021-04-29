@@ -44,7 +44,7 @@ class CategoryController extends Controller
         //
         $category = new Category;
 
-        $validate = $request->validate(['name']);
+        $validate = $request->validate(['name'=>'required']);
 
         if ($validate) 
         {

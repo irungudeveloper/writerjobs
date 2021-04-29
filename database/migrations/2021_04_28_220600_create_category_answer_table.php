@@ -13,7 +13,7 @@ class CreateCategoryAnswerTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_answer', function (Blueprint $table) {
+        Schema::create('answer_category', function (Blueprint $table) {
             $table->id();
             $table->integer('category_id')->unsigned();
             $table->integer('answer_id')->unsigned();
