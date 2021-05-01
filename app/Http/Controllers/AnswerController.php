@@ -69,7 +69,8 @@ class AnswerController extends Controller
             {
                $answer->category()->attach($request->category_id);
                
-                   return response()->json(['status_code'=>201]);
+                   // return response()->json(['status_code'=>201]);
+               return redirect()->back();
             }
             else
             {
@@ -129,6 +130,11 @@ class AnswerController extends Controller
 
         if ($validate) 
         {
+            $imageName = time().'.'.$request->image->extension();  
+   
+            $request->image->move(public_path('images'), $imageName); 
+
+
             $answer = Answer::where('id',$id)
                         ->first()
                         ->update([
@@ -139,7 +145,8 @@ class AnswerController extends Controller
                             ]);
             if ($answer) 
             {
-                return response()->json(['status_code'=>200]);
+                // return response()->json(['status_code'=>200]);
+                return redirect()->back();
             }
             else
             {
@@ -166,11 +173,19 @@ class AnswerController extends Controller
 
         if ($answer->delete()) 
         {
-            return response()->json(['status_code'=>200]);
+            // return response()->json(['status_code'=>200]);
+            return redirect()->back();
         }
         else
         {
             return response()->json(['status_code'=>500]);
         }
+    }
+
+    public function single($id)
+    {
+        $answer = Answer::findOrFail($id);
+
+        return view('single')->with('answer',$answer);
     }
 }

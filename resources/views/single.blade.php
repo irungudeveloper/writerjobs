@@ -11,7 +11,7 @@
   <div class="preloader"></div>
     
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-        <a class="navbar-brand" href="#"> <img src="images/landing_page/andika_logo.png" style="width: 50px; height: 50px;" class="rounded-circle"> JIBU</a>
+        <a class="navbar-brand" href="#"> <img src="{{ asset('images/landing_page/andika_logo.png')}}" style="width: 50px; height: 50px;" class="rounded-circle"> JIBU</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -52,88 +52,44 @@
     </nav>
 
     <div class="row m-0 p-0 hero-section">
-      <img src="images/landing_page/background_header.jpeg" style="width: 100%; height: 80vh; filter: brightness(50%);">
+      <img src="{{ asset('images/landing_page/background_header.jpeg')}}" style="width: 100%; height: 80vh; filter: brightness(50%);">
     </div>
 
-    <div class="row m-3 justify-content-center bg-white p-2">
-      <div class="col-12 bg-white">
-          <h4 class="text-center mt-3"><u>Need Help! Search for the question and get results</u></h4>
-          <form>
-            <div class="form-group row justify-content-center">
-              <input type="text" name="search" class="col-9 p-2 mr-2 form-control border border-3 alert-secondary rounded-pill">
-              <button class="btn btn-solid btn-success col-2">Search <i class="fas fa-search"></i></button>
-            </div>
-          </form>
-      </div>
-    </div>
+    <div class="row m-0 pt-3 m-3 mt-5 bg-white">
+      <div class="col-12">
+        <h3 class="text-center"><u>Question & Answer</u></h3>
+        <div class="col-12">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4">
+                <img src="{{asset('images/'.$answer->image)}}" style="width: 100%; height: 40vh;">
+              </div>
+              <div class="col-8">
+                <p>Question: {{ $answer->question }} </p>
+                <p> Answer: {{ $answer->answer }}  </p>
 
-    <div class="row m-3 mt-3 bg-white p-2">
-      <div class="col-12 p-2">
-        <h4 class="text-center mt-3"><u>All Categories</u></h4>
-        <div class="row m-0 ">
-          <div class="col-10">
-            @foreach($category as $data)
-            <a href="#" class="m-2 btn btn-outline-success rounded-pill"> {{ $data->name }} </a>
-             @endforeach
-          </div>       
-        </div>
-      </div>
-    </div>
-
-    <div class="row m-0 m-3 bg-white p-2">
-      <div class="col-12 p-2">
-        <h4 class="text-center"><u>Latest Q&A</u></h4>
-
-        <div class="row m-0">
-          @foreach($answer as $data)
-
-            <div class="col-3 p-3">
-              <div class="card">
-                <div class="card-header">
-                  <img src="images/{{$data->image}}" style="width: 100%; height: 30vh;">
-                </div>
-                <div class="card-body">
-                  <p><b>{{ $data->question }} </b> </p>
-                </div>
-                <div class="card-footer text-center">
-                  @auth
-                  <a class="btn btn-solid btn-success" href=" {{ route('answer.single', $data->id) }} ">View Answer</a>
-                  @else
-                  <a class="btn btn-solid btn-primary" href=" {{ route('pay.singlepay', [$data->price,$data->id]) }} ">Pay {{ $data->price }} to view answer</a>
-                  @endauth
-                </div>
+                <div class="row pt-5 justify-content-end">
+                  <div class="col-4">
+                    <p class="text-end text-warning">Leave a rating for this answer:</p>
+                  </div>
+                    <div class="rating col-3">
+                      <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
+                      <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
+                      <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
+                      <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
+                      <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
+                    </div>
+                    <div class="col-12 text-start">
+                      <a href="/"><i class="fas fa-arrow-left"> Go Back</i></a>
+                    </div>
+                </div>                
               </div>
             </div>
-
-          @endforeach  
-        </div>
-
-      </div>
-    </div>
-
-    <div class="row m-3 p-2 mt-3 bg-white">
-      <div class="col-12">
-        <h3 class="text-center"><u>Packages</u></h3>
-      </div>
-     
-     @foreach($sub as $data)
-      <div class="col-4 p-2 test">
-        <div class="card border-0 m-1"> 
-        
-          <div class="card-body">
-            <h4 class="text-center"><u>{{ $data->name }}</u></h4>
-            <p class="text-center"><b>Amount: {{ $data->amount }} </b> </p>
-            <p></p>
-          </div>
-          <div class="card-footer text-center bg-white">
-            <a href="#" class="btn btn-solid btn-info">Subscribe</a>
           </div>
         </div>
       </div>
-      @endforeach
     </div>
-
-   <div class="row m-0 p-2 mt-5 mb-2 bg-white m-3">
+    <div class="row m-0 pt-3 m-3 mt-5 bg-white">
       <div class="col-12">
         <h3 class="text-center"><u>Blog Post</u></h3>
         <div class="row">
@@ -191,7 +147,6 @@
       </div>
     </footer>
 
-
     
 </body>
   
@@ -207,6 +162,23 @@
       $('.preloader').fadeOut('slow');
     }
 
+    $(document).ready(function()
+    {
+    // Check Radio-box
+    $(".rating input:radio").attr("checked", false);
+
+    $('.rating input').click(function () {
+        $(".rating span").removeClass('checked');
+        $(this).parent().addClass('checked');
+    });
+
+    $('input:radio').change(
+      function(){
+        var userRating = this.value;
+        alert("Thank you for the feedback");
+    }); 
+});
+
   </script>
 
 </html>
@@ -214,4 +186,3 @@
 
 <!------ Include the above in your HEAD tag ---------->
 
-  

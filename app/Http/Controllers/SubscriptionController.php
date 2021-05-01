@@ -51,7 +51,8 @@ class SubscriptionController extends Controller
 
             if ($sub->save()) 
             {
-                return response()->json(['status_code'=>201]);
+                // return response()->json(['status_code'=>201]);
+                return redirect()->back();
             }
             else
             {
@@ -107,7 +108,8 @@ class SubscriptionController extends Controller
 
             if ($sub) 
             {
-                return response()->json(['status_code'=>200]);
+                // return response()->json(['status_code'=>200]);
+                return redirect()->back();
             }
             else
             {
@@ -133,7 +135,8 @@ class SubscriptionController extends Controller
 
         if ($sub->delete()) 
         {
-            return response()->json(['status_code'=>200]);
+            // return response()->json(['status_code'=>200]);
+            return redirect()->back();
         }
         else
         {

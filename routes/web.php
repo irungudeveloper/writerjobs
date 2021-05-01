@@ -23,6 +23,10 @@ Route::resource('/category','CategoryController');
 
 Route::get('/home','HomeController@home');
 
+Route::get('/single/{id}','AnswerController@single')->name('answer.single');
+
+Route::get('/pay/{price}/{id}','PaymentController@singlepay')->name('pay.singlepay');
+
 Auth::routes();
 
 // Route::get('/home', function() {

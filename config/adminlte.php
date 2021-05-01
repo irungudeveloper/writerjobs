@@ -268,12 +268,12 @@ return [
 
         ['header'=>'Subscrption Settings'],
         [
-            'text'=>'Ceate new Answer',
+            'text'=>'Ceate new Subscription',
             'url'=>'sub/create',
             'icon'=>'fas fa-plus',
         ],
         [
-            'text'=>'Manage Answers',
+            'text'=>'Manage Subscriptions',
             'url'=>'sub',
             'icon'=>'fas fa-table',
         ],

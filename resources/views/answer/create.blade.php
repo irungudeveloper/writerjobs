@@ -61,13 +61,8 @@
 @stop
 
 @section('js')
-   <script src='https://cdn.tiny.cloud/1/kxqq67o3mcu65boxzctvtlv4sjsjzenp4dyiu6iqrtlucr66/tinymce/5/tinymce.min.js' referrerpolicy="origin">
-  </script>
   <script>
-    tinymce.init({
-      selector: 'textarea'
-    });
-
+    
     $(document).ready(function(){
     	$('#category').select2();
     });

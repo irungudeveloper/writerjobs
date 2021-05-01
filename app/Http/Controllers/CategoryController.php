@@ -52,7 +52,8 @@ class CategoryController extends Controller
 
            if ($category->save()) 
            {
-              return response()->json(['status_code'=>201]);
+              // return response()->json(['status_code'=>201]);
+            return redirect()->back();
            }
            else
            {
@@ -107,7 +108,8 @@ class CategoryController extends Controller
             $category = Category::where('id',$id)->first()->update(['name'=>$request->name]);
             if ($category) 
             {
-                return response()->json(['status_code'=>200]);
+                // return response()->json(['status_code'=>200]);
+                return redirect()->back();
             }
             else
             {
@@ -134,7 +136,8 @@ class CategoryController extends Controller
 
         if ($category->delete()) 
         {
-            return response()->json(['status_code'=>200]);
+            // return response()->json(['status_code'=>200]);
+            return redirect()->back();
         }
         else
         {

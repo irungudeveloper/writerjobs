@@ -31,12 +31,12 @@
 							<td> {{ $data->answer }} </td>
 							<td> 
 								<div class="row">
-									<div class="col-5 col-sm-12 col-md-2 col-lg-2">
+									<div class="col-5 p-3 col-sm-12 col-md-2 col-lg-2">
 										<a class="btn btn-outline-info rounded-circle" href=" {{ route('answer.edit',$data->id) }} ">
 											<i class="fas fa-eye"></i>
 										</a>
 									</div>
-									<div class="col-5 col-sm-12 col-md-2 col-lg-2">
+									<div class="col-5 p-3 col-sm-12 col-md-2 col-lg-2">
 										<form action=" {{ route('answer.destroy',$data->id ) }} " method="post">
 											@csrf
 											@method('delete')
