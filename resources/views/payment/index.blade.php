@@ -80,6 +80,11 @@
       </div>
     </div>
 
+    <div class="row m-3 mt-3 bg-white p-2 ">
+      <div class="col-12 text-center">
+        <a class="btn btn-solid btn-success" href=" {{ route('answer.single', $id) }} ">View Answer</a>
+      </div>
+    </div>
 
     <footer class="row m-0 p-0 pt-2 footer">
       <div class="col-12">
