@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','DashboardController@landing');
+Route::get('/','DashboardController@landing')->name('landing');
 
 Route::resource('/answer','AnswerController');
 
@@ -26,6 +26,14 @@ Route::get('/home','HomeController@home');
 Route::get('/single/{id}','AnswerController@single')->name('answer.single');
 
 Route::get('/pay/{price}/{id}','PaymentController@singlepay')->name('pay.singlepay');
+
+Route::get('/subscribe/{sub}','SubscriptionController@display')->name('pay.sub');
+
+Route::view('/sub/account/create','sub.account')->name('subaccount.create');
+
+Route::post('/account','SubscriptionController@accountCreate')->name('subaccount.store');
+
+Route::get('/category/question/{id}','CategoryController@questionCategory')->name('category.question');
 
 Auth::routes();
 

@@ -144,4 +144,13 @@ class CategoryController extends Controller
             return response()->json(['status_code'=>500]);
         }
     }
+
+    public function questionCategory($id)
+    {
+        $question = Category::where('id',$id)->with('answer')->get();
+
+        return view('category.answer')->with('question',$question);
+
+        // return response()->json(['data'=>$question]);
+    }
 }
