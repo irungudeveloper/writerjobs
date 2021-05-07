@@ -1,6 +1,10 @@
 
   @extends('master')
-  @section('content')    
+  @section('content')   
+
+     <div class="row m-0 p-0 hero-section">
+      <img src="{{asset('images/landing_page/background_header.jpeg')}}" style="width: 100%; height: 80vh; filter: brightness(50%);">
+    </div> 
    
     <div class="row m-3 justify-content-center bg-white p-2">
       <div class="col-12 bg-white">
@@ -13,48 +17,59 @@
           </form>
       </div>
     </div>
-
-    <div class="row m-3 mt-3 bg-white p-2">
-      <div class="col-12 p-2">
-        <h4 class="text-center mt-3"><u>All Categories</u></h4>
-        <div class="row m-0 ">
-          <div class="col-10">
-            @foreach($category as $data)
-            <a href=" {{ route('category.question',$data->id) }} " class="m-2 btn btn-outline-success rounded-pill"> {{ $data->name }} </a>
-             @endforeach
-          </div>       
-        </div>
-      </div>
-    </div>
-
-    <div class="row m-0 m-3 bg-white p-2">
-      <div class="col-12 p-2">
-        <h4 class="text-center"><u>Latest Q&A</u></h4>
-
-        <div class="row m-0">
-          @foreach($answer as $data)
-
-            <div class="col-3 p-3">
+   
+    <div class="row m-3 p-2 mt-3 bg-white">
+      <div class="col-12">
+        <h3><u>Questions</u></h3>
+        <div class="row">
+          @foreach($question as $data)
+            <div class="col-4">
               <div class="card">
-                <div class="card-header">
-                  <img src="images/{{$data->image}}" style="width: 100%; height: 30vh;">
-                </div>
                 <div class="card-body">
-                  <p><b>{{ $data->question }} </b> </p>
+                  <div class="row">
+                    <div class="col-12">
+                      <p><u><b> {{ $data->question }}</b></u></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <h4>Choices</h4>
+                        <div class="row">
+                          @foreach($data->option as $option)
+                              <div class="col-6">
+                                <p>A: {{ $option->option_a }} </p>
+                              </div>
+                              <div class="col-6">
+                                <p>B: {{ $option->option_b }} </p>
+                              </div>
+                              <div class="col-6">
+                                <p>C: {{ $option->option_c }} </p>
+                              </div>
+                              <div class="col-6">
+                                <p>D: {{ $option->option_d }} </p>
+                              </div>
+                           @endforeach
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+
+                    <div class="col-12">
+                      
+                    </div>
+                  </div>
                 </div>
                 <div class="card-footer text-center">
-                  @auth
-                  <a class="btn btn-solid btn-success" href=" {{ route('answer.single', $data->id) }} ">View Answer</a>
+                  @if(Auth::user())
+                    <a href=" {{ route('answer.single',$data->id) }} " class="btn btn-success pl-3 pr-3">VIEW ANSWER</a>       
                   @else
-                  <a class="btn btn-solid btn-primary" href=" {{ route('pay.singlepay', [$data->price,$data->id]) }} ">Pay {{ $data->price }} to view answer</a>
-                  @endauth
+                    <a href="/pay/100/{{$data->id}}" class="btn btn-info pl-3 pr-3">Pay 100 To View Answer</a>  
+                  @endif
                 </div>
               </div>
             </div>
-
-          @endforeach  
+          @endforeach
         </div>
-
       </div>
     </div>
 

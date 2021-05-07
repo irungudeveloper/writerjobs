@@ -13,12 +13,12 @@ class CreateAnswerTable extends Migration
      */
     public function up()
     {
-        Schema::create('answer', function (Blueprint $table) {
+        Schema::create('answer', function (Blueprint $table) 
+        {
             $table->id();
-            $table->string('question');
-            $table->string('image');
-            $table->integer('price');
+            $table->integer('question_id');
             $table->string('answer');
+            $table->string('explanation');
             $table->timestamps();
         });
     }

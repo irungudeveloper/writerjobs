@@ -15,26 +15,36 @@
 			<table id="myTable" class="table table-responsive-sm table-stripped">
 				<thead>
 					<th scope="col">#</th>
-					<th scope="col">Name</th>
+					<th scope="col">Question</th>
+					<th scope="col">A</th>
+					<th scope="col">B</th>
+					<th scope="col">C</th>
+					<th scope="col">D</th>
 					<th scope="col"></th>
 				</thead>
 				<tbody>
-					@foreach($category as $data)
+					@foreach($question as $data)
 						<tr>
 							<td> {{ $data->id }} </td>
-							<td> {{ $data->name }} </td>
+							<td> {{ $data->question }} </td>
+							@foreach($data->option as $option)
+							<td> {{ $option->option_a }} </td>
+							<td> {{ $option->option_b }} </td>
+							<td> {{ $option->option_c }} </td>
+							<td> {{ $option->option_d }} </td>
+							@endforeach
 							<td> 
 								<div class="row">
-									<div class="col-5 col-sm-12 col-md-2 col-lg-2">
-										<a class="btn btn-outline-info rounded-circle" href=" {{ route('category.edit',$data->id) }} ">
+									<div class="pr-2">
+										<a class="btn btn-outline-info rounded-circle" href=" {{ route('question.edit',$data->id) }} ">
 											<i class="fas fa-eye"></i>
 										</a>
 									</div>
-									<div class="col-5 col-sm-12 col-md-2 col-lg-2">
-										<form action=" {{ route('category.destroy',$data->id ) }} " method="post">
+									<div class="pr-2">
+										<form action=" {{ route('question.destroy',$data->id ) }} " method="post">
 											@csrf
 											@method('delete')
-											<button type="submit" class="btn btn-outline-danger rounded-pill ml-3"/>
+											<button type="submit" class="btn btn-outline-danger rounded-pill"/>
 												<i class="fas fa-trash-alt"></i>
 											</button>
 										</form>

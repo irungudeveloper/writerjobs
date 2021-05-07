@@ -240,23 +240,21 @@ return [
            'icon' => 'fas fa-tachometer-alt',
         ],
 
-        ['header'=>'Category Settings'],
-
+        ['header'=>'Question Settings'],
         [
-            'text'=>'Create new Category',
-            'url'=>'category/create',
-             'icon' => 'fas fa-plus',
+            'text'=>'Create New Question',
+            'url'=>'question/create',
+            'icon'=>'fas fa-plus',
         ],
-
         [
-            'text'=>'Manage Categories',
-            'url'=>'category',
+            'text'=>'Manage Questions',
+            'url'=>'question',
             'icon'=>'fas fa-table',
         ],
 
         ['header'=>'Answer Settings'],
         [
-            'text'=>'Ceate new Answer',
+            'text'=>'Create new Answer',
             'url'=>'answer/create',
             'icon'=>'fas fa-plus',
         ],
@@ -268,7 +266,7 @@ return [
 
         ['header'=>'Subscrption Settings'],
         [
-            'text'=>'Ceate new Subscription',
+            'text'=>'Create new Subscription',
             'url'=>'sub/create',
             'icon'=>'fas fa-plus',
         ],

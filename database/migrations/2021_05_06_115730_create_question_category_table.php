@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryAnswerTable extends Migration
+class CreateQuestionCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateCategoryAnswerTable extends Migration
      */
     public function up()
     {
-        Schema::create('answer_category', function (Blueprint $table) {
+        Schema::create('question_category', function (Blueprint $table) {
             $table->id();
+            $table->integer('question_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->integer('answer_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateCategoryAnswerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_answer');
+        Schema::dropIfExists('question_category');
     }
 }

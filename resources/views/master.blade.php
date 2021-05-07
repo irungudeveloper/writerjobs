@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href=" {{ asset('css/custom.css') }} ">
 </head>
-<body class="alert-secondary">
+<body>
 
   <div class="preloader"></div>
     
@@ -63,9 +63,7 @@
 
     </nav>
 
-    <div class="row m-0 p-0 hero-section">
-      <img src="{{asset('images/landing_page/background_header.jpeg')}}" style="width: 100%; height: 80vh; filter: brightness(50%);">
-    </div>
+   
 
     @yield('content')
 
@@ -82,7 +80,6 @@
           </div>
            <div class="col-4">
             <h3 class="text-center"><u>Location</u></h3>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.332057737132!2d36.94334855!3d-1.2733727499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f6b4dad04f973%3A0xe3f83d3a5488222c!2sAssumption%20High%20School%20Corradini%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1619827257706!5m2!1sen!2ske" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
           </div>
            <div class="col-4">
             <h3 class="text-center"><u>Affiliate Links</u></h3>
@@ -102,8 +99,6 @@
   
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src='https://cdn.tiny.cloud/1/kxqq67o3mcu65boxzctvtlv4sjsjzenp4dyiu6iqrtlucr66/tinymce/5/tinymce.min.js' referrerpolicy="origin">
-  </script>
     
   <script type="text/javascript">
     

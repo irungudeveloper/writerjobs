@@ -1,8 +1,8 @@
 @extends('master')
-@section('content')
+  @section('content')   
 
-	<div class="row m-3 mt-3 bg-white p-2">
-      <div class="col-12 p-2">
+  <div class="row m-3 mt-3 bg-white p-2">
+      <div class="col-12 p-2 pt-5">
         <h4 class="text-center mt-3"><u>Pay through</h4>
 
         <div class="row m-0">
@@ -32,6 +32,6 @@
       </div>
     </div>
 
-
-
 @endsection
+	
+

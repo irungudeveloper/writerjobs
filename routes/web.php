@@ -21,6 +21,11 @@ Route::resource('/sub','SubscriptionController');
 
 Route::resource('/category','CategoryController');
 
+Route::resource('/question','QuestionController');
+
+Route::resource('/answer','AnswerController');
+Route::post('/answer/option','AnswerController@getOptions')->name('answer.option');
+
 Route::get('/home','HomeController@home');
 
 Route::get('/single/{id}','AnswerController@single')->name('answer.single');

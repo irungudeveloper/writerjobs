@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Answer;
-use App\Category;
 use App\Subscription;
+use App\Question;
 
 class DashboardController extends Controller
 {
@@ -14,11 +14,11 @@ class DashboardController extends Controller
     public function landing()
     {
     	$answer = Answer::all();
-    	$category = Category::all();
     	$sub = Subscription::all();
-
+    	$question = Question::all();
+    	$pay = 100;
     	return view('welcome')->with('answer',$answer)
-    						  ->with('category',$category)
+    						  ->with('question',$question)
     						  ->with('sub',$sub);
     }
 }

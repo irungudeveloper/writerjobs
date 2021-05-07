@@ -11,64 +11,100 @@
 @section('content')
 	
 	<div class="row justify-content-center">
-		<div class="col-10 bg-white">
-			<h4 class="text-center">Edit Answer</h4>
-			<div class="card-body">
-				<form action=" {{ route('answer.update',$answer->id) }} " method="POST" enctype="multipart/form-data">
-					@csrf
-					@method('put')
-					<div class="form-group row">
-						<div class="col-12">
-							 <label for="question">Question</label>
-							 <textarea class="form-control" id="question" name="question"> {{ $answer->question }} </textarea>
-						</div>
+		<div class="col-10 p-4 bg-white">
+			<form method="POST" action=" {{ route('answer.update',$answer->id) }} ">
+				@csrf
+				@method('PUT')
+				<div class="form-group row">
+					<label for="question">Question</label>
+					<select id="question" name="question_id" class="form-control">
+						<option value=" {{ $answer->question->id }} " >{{$answer->question->question}}</option>
+						@foreach($question as $data)
+							<option value=" {{ $data->id }} "> {{ $data->question }} </option>
+						@endforeach
+					</select>
+				</div>
+				<div class="form-group row">
+					<label for="option">Option</label>
+					<select id="option" name="answer" class="form-control">
+						<option value=" {{ $answer->answer }} " >{{$answer->answer}}</option>
+					</select>
+				</div>
+				<div class="form-group row">
+					<label for="explanation">Explanation</label>
+					<textarea class="form-control" id="explanation" name="explanation">{{$answer->explanation}}</textarea>
+				</div>
+				<div class="form-group row">
+					<div class="col-12 text-center">
+						<button class="btn btn-success pl-3 pr-3">UPDATE ANSWER</button>
 					</div>
-					<div class="form-group row">
-						<div class="col-12">
-							<label for="image">Image</label>
-							<input type="file" id="image" name="image" class="form-control">
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-6">
-							<label for="price">Price</label>
-							<input type="integer" name="price" id="price" class="form-control" value=" {{ $answer->price }} ">
-						</div>
-						<div class="col-6">
-							<label for="category">Category</label>
-							<select class="form-control" id="category" name="category_id[]" multiple>
-								@foreach($category as $data)
-									<option value=" {{ $data->id }} "> {{ $data->name }} </option>
-								@endforeach
-							</select>
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-12">
-							<label for="answer">Answer</label>
-							<textarea id="answer" class="form-control" name="answer"> {{ $answer->answer }} </textarea>
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-12 text-center">
-							 <button class="btn btn-solid btn-success">UPDATE</button>
-						</div>
-					</div>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 	</div>
 
 @stop
 
 @section('js')
-   
-  </script>
-  <script>
-    $(document).ready(function(){
-    	$('#category').select2();
-    });
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		
+		$(document).ready(function()
+		{
+			var q_id;
+			var options;
+			var select=document.getElementById('option');
 
-  </script>
+			$('#question').on('change',function(e)
+			{
+				q_id = $('#question').val();
+				console.log(q_id);
 
+				$.ajax(
+					{
+						url:" {{ route('answer.option') }} ",
+						method:'POST',
+						data:{
+							"_token":" {{ csrf_token() }} ",
+							id:q_id
+						},
+						dataType:'json',
+						success:function(response)
+						{
+							console.log(response.response_data[0]['option_a']);
+
+							var myOption1 = document.createElement("option");
+							var myOption2 = document.createElement("option");
+							var myOption3 = document.createElement("option");
+							var myOption4 = document.createElement("option");
+							myOption1.text = response.response_data[0]['option_a'];
+							myOption2.text = response.response_data[0]['option_b'];
+							myOption3.text = response.response_data[0]['option_c'];
+							myOption4.text = response.response_data[0]['option_d'];
+
+							myOption1.value = response.response_data[0]['option_a'];
+							myOption2.value = response.response_data[0]['option_b'];
+							myOption3.value = response.response_data[0]['option_c'];
+							myOption4.value = response.response_data[0]['option_d'];
+
+							select.add(myOption1);
+							select.add(myOption2);
+							select.add(myOption3);
+							select.add(myOption4);
+
+						},
+						error:function(error)
+						{
+							console.log(error);
+						}
+					});
+			});
+		});
+
+	</script>
+
+
+   <!--  <script>
+    	 $('#myTable').DataTable();
+     </script> -->
 @stop
