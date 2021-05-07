@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question;
 use App\Answer;
-use App\Category;
+use App\Options;
 
 class AnswerController extends Controller
 {
@@ -30,9 +31,27 @@ class AnswerController extends Controller
     public function create()
     {
         //
-        $category = Category::all();
+        $question = Question::all();
 
-        return view('answer.create')->with('category',$category);
+        return view('answer.create')->with('question',$question);
+    }
+
+    public function getOptions(Request $request)
+    {
+        $options = Options::where('question_id',$request->id)->get();
+
+        return response()->json(
+                            [
+                              'response_code'=>200,
+                              'response_data'=>$options
+                            ]);
+    }
+
+    public function single($id)
+    {
+      $answer = Answer::findOrFail($id);
+
+      return view('single')->with('answer',$answer);
     }
 
     /**
@@ -44,40 +63,48 @@ class AnswerController extends Controller
     public function store(Request $request)
     {
         //
+        // $validate = $request->validate(
+        //                         [
+        //                             'question_id'=>'required',
+        //                             'answer'=>'required',
+        //                             'explanation'=>'required'
+        //                         ]);
 
-        $answer = new Answer;
+        // if ($validate) 
+        // {
+            $answer = new Answer;
 
-        $validate = $request->validate([
-                    'question'=>'required',
-                    'image'=>'required|image',
-                    'price'=>'required',
-                    'answer'=>'required',
-                ]);
-
-        if ($validate) 
-        {
-            $imageName = time().'.'.$request->image->extension();  
-   
-            $request->image->move(public_path('images'), $imageName); 
-
-            $answer->question = $request->question;
-            $answer->image = $imageName;
-            $answer->price = $request->price;
+            $answer->question_id = $request->question_id;
             $answer->answer = $request->answer;
+            $answer->explanation = $request->explanation;
 
             if ($answer->save()) 
             {
-                return response()->json(['status_code'=>201]);
+                return response()->json(
+                                    [
+                                        'response_code'=>201,
+                                        'response_message'=>'Successfull'
+                                    ]);
             }
             else
             {
-                return response()->json(['status_code'=>500]);
-            }  
-        }
-        else
-        {
-            return response()->json(['status_code'=>300]);
-        }
+                return response()->json(
+                                    [
+                                        'response_code'=>500,
+                                        'response_message'=>'Answer Not Saved'
+                                    ]);
+            }
+
+        // }
+        // else
+        // {
+        //     return response()->json(
+        //                         [
+        //                             'response_code'=>300,
+        //                             'response_message'=>'Invalid Request'
+        //                         ]);
+        // }
+
     }
 
     /**
@@ -89,6 +116,13 @@ class AnswerController extends Controller
     public function show($id)
     {
         //
+        $answer = Answer::findOrFail($id);
+        $question = Question::all();
+        $option = Options::all();
+
+        return view('answer.show')->with('answer',$answer)
+                                  ->with('question',$question)
+                                  ->with('option',$option);
     }
 
     /**
@@ -100,9 +134,13 @@ class AnswerController extends Controller
     public function edit($id)
     {
         //
-        $answer = Answer::findOrFail($id);
+         $answer = Answer::findOrFail($id);
+        $question = Question::all();
+        $option = Options::all();
 
-        return view('answer.edit')->with('answer',$answer);
+        return view('answer.edit')->with('answer',$answer)
+                                  ->with('question',$question)
+                                  ->with('option',$option);
     }
 
     /**
@@ -115,38 +153,46 @@ class AnswerController extends Controller
     public function update(Request $request, $id)
     {
         //
-
-        $validate = $request->validate([
-                    'question'=>'required',
-                    'image'=>'nullable',
-                    'price'=>'required',
-                    'answer'=>'required',
-                ]);
-
+        $validate = $request->validate(
+                                [
+                                    'question_id'=>'required',
+                                    'answer'=>'required',
+                                    'explanation'=>'required'
+                                ]);
         if ($validate) 
         {
             $answer = Answer::where('id',$id)
-                        ->first()
-                        ->update([
-                                'question'=>$request->question,
-                                'image'=>$request->image,
-                                'price'=>$request->price,
-                                'answer'=>$request->answer,
-                            ]);
+                              ->first()
+                              ->update([
+                                    'question_id'=>$request->question_id,
+                                    'answer'=>$request->answer,
+                                    'explanation'=>$request->explanation
+                                ]);
             if ($answer) 
             {
-                return response()->json(['status_code'=>200]);
+                return response()->json(
+                                    [
+                                        'response_code'=>200,
+                                        'response_message'=>'Succesfull'
+                                    ]);
             }
             else
             {
-                return response()->json(['status_code'=>500]);
+                return response()->json(
+                                    [
+                                        'response_code'=>500,
+                                        'response_message'=>'Answer Not Updated'
+                                    ]);
             }
         }
         else
         {
-            return response()->json(['status_code'=>300]);
+            return response()->json(
+                                [
+                                    'response_code'=>300,
+                                    'response_message'=>'Invalid Request'
+                                ]);
         }
-
     }
 
     /**
@@ -157,16 +203,23 @@ class AnswerController extends Controller
      */
     public function destroy($id)
     {
-        //
         $answer = Answer::findOrFail($id);
 
         if ($answer->delete()) 
         {
-            return response()->json(['status_code'=>200]);
+            return response()->json(
+                                [
+                                    'response_code'=>200,
+                                    'response_message'=>'Succesfull'
+                                ]);
         }
         else
         {
-            return response()->json(['status_code'=>500]);
+            return response()->json(
+                                [
+                                    'response_code'=>500,
+                                    'response_message'=>'Answer Not Found/Deleted'
+                                ]);
         }
     }
 }
