@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubscriptionTable extends Migration
+class CreateAnswerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateSubscriptionTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscription', function (Blueprint $table) {
+        Schema::create('answer', function (Blueprint $table) 
+        {
             $table->id();
-            $table->string('name');
-            $table->integer('amount');
+            $table->integer('question_id');
+            $table->string('answer');
+            $table->string('explanation');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateSubscriptionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscription');
+        Schema::dropIfExists('answer');
     }
 }

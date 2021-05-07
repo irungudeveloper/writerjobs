@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Subscription;
+use App\User;
 
 class SubscriptionController extends Controller
 {
@@ -18,6 +20,66 @@ class SubscriptionController extends Controller
         $subscription = Subscription::all();
 
         return view('sub.index')->with('sub',$subscription);
+    }
+
+    public function display($sub)
+    {
+        $sub = Subscription::where('id',$sub);
+        return view('payment.subscribe')->with('sub',$sub);
+    }
+
+    public function accountCreate(Request $request)
+    {
+        $validate = $request->validate(['sir_name'=>'required',
+                                        'other_name'=>'required',
+                                        'email'=>'required',
+                                        'phone'=>'required',
+                                        'password'=>'required'
+                                        ]);
+        if ($validate) 
+        {
+           if ($request->password == $request->retype) 
+           {
+               $hash = Hash::make($request->password);
+
+               $user = new User;
+
+               $user->name = $request->sir_name.','.$request->other_name;
+               $user->email = $request->email;
+               $user->password = $hash;
+               $user->role_id = 2;
+               $user->phone = $request->phone;
+               $user->account_status = 0;
+
+               if ($user->save()) 
+               {
+                   // return response()->json(['status_code'=>201]);
+                return redirect()->route('landing');
+               }
+               else
+               {
+                    return response()->json(['status_code'=>500]);
+               }
+
+           }
+           else
+           {
+                return response()->json(['status_code'=>303]);
+           }
+
+        }
+        else
+        {
+            return response()->json(['status_code'=>300]);
+        }
+       // User::create([
+       //      'name' => $data['name'],
+       //      'email' => $data['email'],
+       //      'password' => Hash::make($data['password']),
+       //      'role_id' => $data['role_id'],
+       //      'phone'=>$data['phone'],
+       //      'account_status'=>0,
+       //  ]);
     }
 
     /**
@@ -51,7 +113,8 @@ class SubscriptionController extends Controller
 
             if ($sub->save()) 
             {
-                return response()->json(['status_code'=>201]);
+                // return response()->json(['status_code'=>201]);
+                return redirect()->back();
             }
             else
             {
@@ -99,7 +162,7 @@ class SubscriptionController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $validate = $request->validate(['name'=>'required']);
+        $validate = $request->validate(['name'=>'required','amount'=>'required']);
 
         if ($validate) 
         {
@@ -107,7 +170,8 @@ class SubscriptionController extends Controller
 
             if ($sub) 
             {
-                return response()->json(['status_code'=>200]);
+                // return response()->json(['status_code'=>200]);
+                return redirect()->back();
             }
             else
             {
@@ -133,7 +197,8 @@ class SubscriptionController extends Controller
 
         if ($sub->delete()) 
         {
-            return response()->json(['status_code'=>200]);
+            // return response()->json(['status_code'=>200]);
+            return redirect()->back();
         }
         else
         {
