@@ -19,7 +19,7 @@ Route::resource('/answer','AnswerController');
 
 Route::resource('/sub','SubscriptionController');
 
-Route::resource('/category','CategoryController');
+// Route::resource('/category','CategoryController');
 
 Route::resource('/question','QuestionController');
 
@@ -38,7 +38,7 @@ Route::view('/sub/account/create','sub.account')->name('subaccount.create');
 
 Route::post('/account','SubscriptionController@accountCreate')->name('subaccount.store');
 
-Route::get('/category/question/{id}','CategoryController@questionCategory')->name('category.question');
+// Route::get('/category/question/{id}','CategoryController@questionCategory')->name('category.question');
 
 Auth::routes();
 

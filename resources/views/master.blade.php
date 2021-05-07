@@ -11,7 +11,7 @@
   <div class="preloader"></div>
     
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-        <a class="navbar-brand" href="#"> <img src="{{asset('images/landing_page/andika_logo.png')}}" style="width: 50px; height: 50px;" class="rounded-circle"> JIBU</a>
+        <a class="navbar-brand" href="/"> <img src="{{asset('images/landing_page/andika_logo.png')}}" style="width: 50px; height: 50px;" class="rounded-circle"> JIBU</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,19 +20,16 @@
           
             <ul class="navbar-nav ml-auto topnav">
                 <li class="nav-item active">
-                    <a class="nav-link ml-2" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link ml-2" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link ml-2" href="#">About</a>
+                    <a class="nav-link ml-2" href="/">About</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link ml-2" href="#">Testimonials</a>
+                    <a class="nav-link ml-2" href="/">Blog</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link ml-2" href="#">Blog</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link mr-5" href="#">Contact</a>
+                    <a class="nav-link mr-5" href="/">Contact</a>
                 </li>
                 @if (Route::has('login'))
                     @auth

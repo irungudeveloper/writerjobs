@@ -80,7 +80,7 @@ class QuestionController extends Controller
                     //                         'response_code'=>201,
                     //                         'response_message'=>'Successful'
                     //                     ]);
-                    echo "CREATED";
+                    return redirect()->back();
                 }
                 else
                 {
@@ -188,7 +188,7 @@ class QuestionController extends Controller
                     //                         'response_code'=>200,
                     //                         'response_message'=>'Succesfull'
                     //                     ]);
-                    echo "SUCCESS";
+                    return redirect()->back();
                 }
                 else
                 {
@@ -239,11 +239,7 @@ class QuestionController extends Controller
         {
             if ($option->delete()) 
             {
-                return response()->json(
-                                    [
-                                        'response_code'=>200,
-                                        'response_message'=>'Succesfull'
-                                    ]);
+                return redirect()->back();
             }
             else
             {

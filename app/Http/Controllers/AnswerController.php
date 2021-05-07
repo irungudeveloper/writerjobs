@@ -80,11 +80,12 @@ class AnswerController extends Controller
 
             if ($answer->save()) 
             {
-                return response()->json(
-                                    [
-                                        'response_code'=>201,
-                                        'response_message'=>'Successfull'
-                                    ]);
+                // return response()->json(
+                //                     [
+                //                         'response_code'=>201,
+                //                         'response_message'=>'Successfull'
+                //                     ]);
+                  return redirect()->back();
             }
             else
             {
@@ -170,11 +171,7 @@ class AnswerController extends Controller
                                 ]);
             if ($answer) 
             {
-                return response()->json(
-                                    [
-                                        'response_code'=>200,
-                                        'response_message'=>'Succesfull'
-                                    ]);
+                return redirect()->back();
             }
             else
             {
@@ -207,11 +204,7 @@ class AnswerController extends Controller
 
         if ($answer->delete()) 
         {
-            return response()->json(
-                                [
-                                    'response_code'=>200,
-                                    'response_message'=>'Succesfull'
-                                ]);
+            return redirect()->back();
         }
         else
         {

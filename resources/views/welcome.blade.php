@@ -87,9 +87,15 @@
             <p class="text-center"><b>Amount: {{ $data->amount }} </b> </p>
             <p></p>
           </div>
-          <div class="card-footer text-center bg-white">
-            <a href=" {{ route('pay.sub', $data->id ) }} " class="btn btn-solid btn-info">Subscribe</a>
-          </div>
+            
+              @can('administrator')
+
+              @else
+                <div class="card-footer text-center bg-white">
+                   <a href=" {{ route('pay.sub', $data->id ) }} " class="btn btn-solid btn-info">Subscribe</a>
+               </div>
+              @endcan
+            
         </div>
       </div>
       @endforeach
